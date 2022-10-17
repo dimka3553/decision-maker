@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <script type="text/javascript">
+    var pr = 0;
+    var cost = 0;
+    var risk = 0;
+    var time = 0;
+    var country = 0;
+    var wealth = 0;
+    var edu = 0;
+    var rev = 0;
+    var intelligence = 0;
+    var ran = 0;
+
+    function getRan() {
+      ran = Math.random() * 2;
+      document.getElementById("ran").value = ran;
+    }
+    function getValues() {
+      pr = document.getElementById("pr").value;
+      cost = document.getElementById("cost").value;
+      risk = document.getElementById("risk").value;
+      time = document.getElementById("time").value;
+      country = document.getElementById("country").value;
+      rev = document.getElementById("rev").value;
+      wealth = document.getElementById("wealth").value;
+      edu = document.getElementById("edu").value;
+      intelligence = document.getElementById("intelligence").value;
+      ran = document.getElementById("ran").value;
+    }
+
+    function Calculate() {
+      var result =
+        parseInt(pr) +
+        parseInt(country) +
+        parseInt(wealth) +
+        parseInt(edu) +
+        parseInt(intelligence) +
+        parseInt(ran) -
+        (parseInt(cost) + parseInt(risk) + parseInt(time) + parseInt(rev));
+      if (result > 5) {
+        var output = "R.C = " + result + ". This means the decision is good!";
+        document.getElementById("result").innerHTML = output;
+      }
+      if (result < 5 && result > 1) {
+        var output = "R.C = " + result + ". This means the decision is ok!";
+        document.getElementById("result").innerHTML = output;
+      }
+      if (result < 1 && result > -1) {
+        var output =
+          "R.C = " + result + ". This means the decision neither good or bad";
+        document.getElementById("result").innerHTML = output;
+      }
+      if (result < -1 && result > -5) {
+        var output =
+          "R.C = " + result + ". This means the decision is slightly bad";
+        document.getElementById("result").innerHTML = output;
+      }
+      if (result < -5) {
+        var output = "R.C = " + result + ". This means the decision is bad.";
+        document.getElementById("result").innerHTML = output;
+      }
+    }
+  </script>
+  <head>
+    <meta charset="utf-8" />
+    <title>Desicision Maker</title>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Decision Maker</h1>
+      <h2>Or how to decide if a decision is good or bad</h2>
+      <h3>
+        Decision coefficient = (Reward + Luck) - (Cost + Risk + Time +
+        Reversability)
+      </h3>
+    </div>
+    <div class="form">
+      <input
+        type="number"
+        id="pr"
+        name="pr"
+        min="0"
+        max="30"
+        oninput="getValues()"
+      /><label for="pr"> Potential Reward (0[low]-30[huge])</label>
+      <br />
+      <input
+        type="number"
+        id="cost"
+        name="cost"
+        min="0"
+        max="10"
+        oninput="getValues()"
+      /><label for="cost"> Cost (0[nothing]-10[everything])</label>
+      <br />
+      <input
+        type="number"
+        id="risk"
+        name="risk"
+        min="0"
+        max="10"
+        oninput="getValues()"
+      /><label for="risk"> Risk (0[minimal]-10[can lose everything])</label>
+      <br />
+      <input
+        type="number"
+        id="time"
+        name="time"
+        min="0"
+        max="10"
+        oninput="getValues()"
+      /><label for="time"> Time before reward (0[instant]-10[long])</label>
+      <br />
+      <input
+        type="number"
+        id="rev"
+        name="rev"
+        min="0"
+        max="10"
+        oninput="getValues()"
+      /><label for="rev">
+        Reversability (0[easy to reverse]-10[impossible])</label
+      >
+      <br />
+      <h3>Luck:</h3>
+      <input
+        type="number"
+        id="country"
+        name="country"
+        min="0"
+        max="10"
+        oninput="getValues()"
+      /><label for="country"> Country (0[poor]-2[rich])</label>
+      <br />
+      <input
+        type="number"
+        id="wealth"
+        name="wealth"
+        min="0"
+        max="10"
+        oninput="getValues()"
+      /><label for="wealth"> Wealth (0[poor]-2[rich])</label>
+      <br />
+      <input
+        type="number"
+        id="edu"
+        name="edu"
+        min="0"
+        max="10"
+        oninput="getValues()"
+      /><label for="edu"> Education (0[none]-2[highly educated])</label>
+      <br />
+      <input
+        type="number"
+        id="intelligence"
+        name="intelligence"
+        min="0"
+        max="10"
+        oninput="getValues()"
+      /><label for="intelligence"> Intelligence (0[stupid]-2[clever])</label>
+      <br />
+      <input
+        type="number"
+        id="ran"
+        name="ran"
+        min="0"
+        max="10"
+        oninput="getValues()"
+      /><label for="ran"> Random Number(0[low]-2[high])</label
+      ><button onclick="getRan()">Click to get random number</button>
+      <br />
+      <br />
+      <button onclick="Calculate()">Calculate</button>
+    </div>
+    <div id="result"></div>
+  </body>
+</html>
